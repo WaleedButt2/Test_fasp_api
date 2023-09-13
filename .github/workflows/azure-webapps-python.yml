@@ -1,3 +1,4 @@
+
 # This workflow will build and push a Python application to an Azure Web App when a commit is pushed to your default branch.
 #
 # This workflow assumes you have already created the target Azure App Service web app.
@@ -21,8 +22,7 @@ name: Build and deploy Python app to Azure Web App
 
 env:
   AZURE_WEBAPP_NAME: FastTester  # set this to the name of your Azure Web App
-  PYTHON_VERSION: '3.8'              # set this to the Python version to use
-
+  PYTHON_VERSION: '3.8'              # set this to the Python version to us
 on:
   push:
     branches: [ "main" ]
@@ -48,7 +48,6 @@ jobs:
         run: |
           python -m venv venv
           source venv/bin/activate
-
       - name: Install dependencies
         run: pip install -r requirements.txt
 
@@ -61,11 +60,6 @@ jobs:
           path: |
             .
             !venv/
-      - name: Login to Azure
-        uses: azure/login@v1
-        with:
-          creds: ${{ secrets.AZURE_CREDENTIALS }}
-
   deploy:
     permissions:
       contents: none
